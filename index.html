@@ -2,7 +2,7 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>Stream Banner - Rotating Gift Slider</title>
+    <title>Stream Gift Rotator</title>
     <style>
         body {
             margin: 0;
@@ -15,26 +15,9 @@
             width: 100vw;
             height: 300px; 
             background: transparent;
-            overflow: hidden;
-            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-
-        .banner-track {
-            display: flex;
-            width: max-content;
-            align-items: center;
-            animation: scrollBanner 120s linear infinite;
-        }
-
-        .gift-item {
-            height: 300px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 40px;
             perspective: 1000px;
         }
 
@@ -46,6 +29,7 @@
             image-rendering: -webkit-optimize-contrast;
             image-rendering: crisp-edges;
             transform-style: preserve-3d;
+            /* Czas jednego obrotu (zmiana na kolejny gift następuje co 4 sekundy) */
             animation: rotateGift 4s linear infinite;
         }
 
@@ -57,96 +41,28 @@
                 transform: rotateY(360deg);
             }
         }
-
-        @keyframes scrollBanner {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-50%);
-            }
-        }
     </style>
 </head>
 <body>
 
     <div class="banner-container">
-        <div class="banner-track">
-            <!-- ZESTAW 1 (1 do 35) -->
-            <div class="gift-item"><img src="1.png" class="gift-img" alt="Gift 1"></div>
-            <div class="gift-item"><img src="2.png" class="gift-img" alt="Gift 2"></div>
-            <div class="gift-item"><img src="3.png" class="gift-img" alt="Gift 3"></div>
-            <div class="gift-item"><img src="4.png" class="gift-img" alt="Gift 4"></div>
-            <div class="gift-item"><img src="5.png" class="gift-img" alt="Gift 5"></div>
-            <div class="gift-item"><img src="6.png" class="gift-img" alt="Gift 6"></div>
-            <div class="gift-item"><img src="7.png" class="gift-img" alt="Gift 7"></div>
-            <div class="gift-item"><img src="8.png" class="gift-img" alt="Gift 8"></div>
-            <div class="gift-item"><img src="9.png" class="gift-img" alt="Gift 9"></div>
-            <div class="gift-item"><img src="10.png" class="gift-img" alt="Gift 10"></div>
-            <div class="gift-item"><img src="11.png" class="gift-img" alt="Gift 11"></div>
-            <div class="gift-item"><img src="12.png" class="gift-img" alt="Gift 12"></div>
-            <div class="gift-item"><img src="13.png" class="gift-img" alt="Gift 13"></div>
-            <div class="gift-item"><img src="14.png" class="gift-img" alt="Gift 14"></div>
-            <div class="gift-item"><img src="15.png" class="gift-img" alt="Gift 15"></div>
-            <div class="gift-item"><img src="16.png" class="gift-img" alt="Gift 16"></div>
-            <div class="gift-item"><img src="17.png" class="gift-img" alt="Gift 17"></div>
-            <div class="gift-item"><img src="18.png" class="gift-img" alt="Gift 18"></div>
-            <div class="gift-item"><img src="19.png" class="gift-img" alt="Gift 19"></div>
-            <div class="gift-item"><img src="20.png" class="gift-img" alt="Gift 20"></div>
-            <div class="gift-item"><img src="21.png" class="gift-img" alt="Gift 21"></div>
-            <div class="gift-item"><img src="22.png" class="gift-img" alt="Gift 22"></div>
-            <div class="gift-item"><img src="23.png" class="gift-img" alt="Gift 23"></div>
-            <div class="gift-item"><img src="24.png" class="gift-img" alt="Gift 24"></div>
-            <div class="gift-item"><img src="25.png" class="gift-img" alt="Gift 25"></div>
-            <div class="gift-item"><img src="26.png" class="gift-img" alt="Gift 26"></div>
-            <div class="gift-item"><img src="27.png" class="gift-img" alt="Gift 27"></div>
-            <div class="gift-item"><img src="28.png" class="gift-img" alt="Gift 28"></div>
-            <div class="gift-item"><img src="29.png" class="gift-img" alt="Gift 29"></div>
-            <div class="gift-item"><img src="30.png" class="gift-img" alt="Gift 30"></div>
-            <div class="gift-item"><img src="31.png" class="gift-img" alt="Gift 31"></div>
-            <div class="gift-item"><img src="32.png" class="gift-img" alt="Gift 32"></div>
-            <div class="gift-item"><img src="33.png" class="gift-img" alt="Gift 33"></div>
-            <div class="gift-item"><img src="34.png" class="gift-img" alt="Gift 34"></div>
-            <div class="gift-item"><img src="35.png" class="gift-img" alt="Gift 35"></div>
-
-            <!-- ZESTAW 2 (KOPIA DO PŁYNNEJ PĘTLI) -->
-            <div class="gift-item"><img src="1.png" class="gift-img" alt="Gift 1"></div>
-            <div class="gift-item"><img src="2.png" class="gift-img" alt="Gift 2"></div>
-            <div class="gift-item"><img src="3.png" class="gift-img" alt="Gift 3"></div>
-            <div class="gift-item"><img src="4.png" class="gift-img" alt="Gift 4"></div>
-            <div class="gift-item"><img src="5.png" class="gift-img" alt="Gift 5"></div>
-            <div class="gift-item"><img src="6.png" class="gift-img" alt="Gift 6"></div>
-            <div class="gift-item"><img src="7.png" class="gift-img" alt="Gift 7"></div>
-            <div class="gift-item"><img src="8.png" class="gift-img" alt="Gift 8"></div>
-            <div class="gift-item"><img src="9.png" class="gift-img" alt="Gift 9"></div>
-            <div class="gift-item"><img src="10.png" class="gift-img" alt="Gift 10"></div>
-            <div class="gift-item"><img src="11.png" class="gift-img" alt="Gift 11"></div>
-            <div class="gift-item"><img src="12.png" class="gift-img" alt="Gift 12"></div>
-            <div class="gift-item"><img src="13.png" class="gift-img" alt="Gift 13"></div>
-            <div class="gift-item"><img src="14.png" class="gift-img" alt="Gift 14"></div>
-            <div class="gift-item"><img src="15.png" class="gift-img" alt="Gift 15"></div>
-            <div class="gift-item"><img src="16.png" class="gift-img" alt="Gift 16"></div>
-            <div class="gift-item"><img src="17.png" class="gift-img" alt="Gift 17"></div>
-            <div class="gift-item"><img src="18.png" class="gift-img" alt="Gift 18"></div>
-            <div class="gift-item"><img src="19.png" class="gift-img" alt="Gift 19"></div>
-            <div class="gift-item"><img src="20.png" class="gift-img" alt="Gift 20"></div>
-            <div class="gift-item"><img src="21.png" class="gift-img" alt="Gift 21"></div>
-            <div class="gift-item"><img src="22.png" class="gift-img" alt="Gift 22"></div>
-            <div class="gift-item"><img src="23.png" class="gift-img" alt="Gift 23"></div>
-            <div class="gift-item"><img src="24.png" class="gift-img" alt="Gift 24"></div>
-            <div class="gift-item"><img src="25.png" class="gift-img" alt="Gift 25"></div>
-            <div class="gift-item"><img src="26.png" class="gift-img" alt="Gift 26"></div>
-            <div class="gift-item"><img src="27.png" class="gift-img" alt="Gift 27"></div>
-            <div class="gift-item"><img src="28.png" class="gift-img" alt="Gift 28"></div>
-            <div class="gift-item"><img src="29.png" class="gift-img" alt="Gift 29"></div>
-            <div class="gift-item"><img src="30.png" class="gift-img" alt="Gift 30"></div>
-            <div class="gift-item"><img src="31.png" class="gift-img" alt="Gift 31"></div>
-            <div class="gift-item"><img src="32.png" class="gift-img" alt="Gift 32"></div>
-            <div class="gift-item"><img src="33.png" class="gift-img" alt="Gift 33"></div>
-            <div class="gift-item"><img src="34.png" class="gift-img" alt="Gift 34"></div>
-            <div class="gift-item"><img src="35.png" class="gift-img" alt="Gift 35"></div>
-        </div>
+        <img id="giftImage" src="1.png" class="gift-img" alt="Gift">
     </div>
+
+    <script>
+        let currentGift = 1;
+        const totalGifts = 35;
+        const imgElement = document.getElementById('giftImage');
+
+        // Co 4 sekundy (tyle trwa jeden obrót) zmienia obrazek na kolejny
+        setInterval(() => {
+            currentGift++;
+            if (currentGift > totalGifts) {
+                currentGift = 1;
+            }
+            imgElement.src = currentGift + '.png';
+        }, 4000);
+    </script>
 
 </body>
 </html>
