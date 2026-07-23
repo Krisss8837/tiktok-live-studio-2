@@ -24,7 +24,7 @@ body {
     display: flex;
     width: max-content; /* Szerokość dostosowuje się do zawartości */
     /* Animacja przewijania w pętli. Zwiększ czas (np. 60s), jeśli ruch jest za szybki. */
-    animation: scrollBanner 40s linear infinite;
+    animation: scrollBanner 120s linear infinite;
 }
 
 /* Styl dla obu kopii obrazka z giftami */
