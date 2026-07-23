@@ -10,29 +10,42 @@
             background: transparent;
             overflow: hidden;
         }
+
+        /* Główny kontener paska z przezroczystym tłem */
         .banner-container {
             width: 100vw;
-            height: 120px;
-            background: black;
+            height: 300px; 
+            background: transparent; /* Zmieniono z black na transparent */
             overflow: hidden;
             position: relative;
             display: flex;
             align-items: center;
         }
+
+        /* Ścieżka, w której przesuwają się obrazki */
         .banner-track {
             display: flex;
             width: max-content;
-            /* Zwiększyłem czas do 40s dla wolniejszego, płynniejszego ruchu */
-            animation: scrollBanner 40s linear infinite;
+            animation: scrollBanner 120s linear infinite;
         }
+
+        /* Styl dla obu kopii obrazka z giftami */
         .banner-image {
-            height: 110px;
-            width: auto;
+            height: 300px; 
+            width: auto;   
             display: block;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
         }
+
+        /* Płynna animacja przewijania */
         @keyframes scrollBanner {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
         }
     </style>
 </head>
@@ -40,8 +53,8 @@
 
     <div class="banner-container">
         <div class="banner-track">
-           <img src="krisss8837.png" class="banner-image" alt="Banner Giftów">
-<img src="krisss8837.png" class="banner-image" alt="Banner Giftów Kopia">
+            <img src="nowy preset.png" class="banner-image" alt="Banner Giftów">
+            <img src="nowy preset.png" class="banner-image" alt="Banner Giftów Kopia">
         </div>
     </div>
 
