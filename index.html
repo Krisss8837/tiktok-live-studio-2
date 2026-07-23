@@ -11,34 +11,32 @@
             overflow: hidden;
         }
 
-        /* Główny kontener paska z przezroczystym tłem */
         .banner-container {
             width: 100vw;
             height: 300px; 
-            background: transparent; /* Zmieniono z black na transparent */
+            background: transparent;
             overflow: hidden;
             position: relative;
             display: flex;
             align-items: center;
         }
 
-        /* Ścieżka, w której przesuwają się obrazki */
         .banner-track {
             display: flex;
             width: max-content;
-            animation: scrollBanner 120s linear infinite;
+            animation: scrollBanner 40s linear infinite;
         }
 
-        /* Styl dla obu kopii obrazka z giftami */
         .banner-image {
             height: 300px; 
             width: auto;   
             display: block;
+            /* Usuwa czarne tło z obrazka */
+            mix-blend-mode: screen;
             image-rendering: -webkit-optimize-contrast;
             image-rendering: crisp-edges;
         }
 
-        /* Płynna animacja przewijania */
         @keyframes scrollBanner {
             0% {
                 transform: translateX(0);
