@@ -1,0 +1,50 @@
+/* Reset marginesów i ustawienie przezroczystego tła strony */
+body {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    overflow: hidden;
+}
+
+/* Główny czarny kontener paska */
+.banner-container {
+    width: 100vw;
+    /* Ustawiamy stałą, dużą wysokość paska - np. 300px.
+       Dostosuj tę wartość, jeśli gifty są nadal za małe lub za duże. */
+    height: 300px; 
+    background: black;
+    overflow: hidden; /* Ukrywa to, co wyjeżdża poza pasek */
+    position: relative;
+    display: flex;
+    align-items: center; /* Wyśrodkowuje obrazki w pionie */
+}
+
+/* Ścieżka, w której przesuwają się obrazki */
+.banner-track {
+    display: flex;
+    width: max-content; /* Szerokość dostosowuje się do zawartości */
+    /* Animacja przewijania w pętli. Zwiększ czas (np. 60s), jeśli ruch jest za szybki. */
+    animation: scrollBanner 40s linear infinite;
+}
+
+/* Styl dla obu kopii obrazka z giftami */
+.banner-image {
+    /* KLUCZOWE: Wymuszamy, aby wysokość obrazka była zawsze równa wysokości paska.
+       Przeglądarka automatycznie przeskaluje szerokość, zachowując proporcje. */
+    height: 300px; 
+    width: auto;   /* Szerokość dobierana jest automatycznie do wysokości */
+    display: block;
+    /* Zapobiega rozmyciu obrazu przy skalowaniu */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+}
+
+/* Płynna animacja przewijania */
+@keyframes scrollBanner {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%); /* Przesuwa się o połowę szerokości tracka (czyli o jeden obrazek) */
+    }
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Stream Banner</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: transparent;
+            overflow: hidden;
+        }
+        .banner-container {
+            width: 100vw;
+            height: 120px;
+            background: black;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .banner-track {
+            display: flex;
+            width: max-content;
+            /* Zwiększyłem czas do 40s dla wolniejszego, płynniejszego ruchu */
+            animation: scrollBanner 40s linear infinite;
+        }
+        .banner-image {
+            height: 110px;
+            width: auto;
+            display: block;
+        }
+        @keyframes scrollBanner {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="banner-container">
+        <div class="banner-track">
+           <img src="krisss8837.png" class="banner-image" alt="Banner Giftów">
+<img src="krisss8837.png" class="banner-image" alt="Banner Giftów Kopia">
+        </div>
+    </div>
+
+</body>
+</html>
