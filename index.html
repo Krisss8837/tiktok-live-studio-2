@@ -2,7 +2,7 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>Stream Banner - Rotating Gifts</title>
+    <title>Stream Banner - Rotating Gift Slider</title>
     <style>
         body {
             margin: 0;
@@ -11,7 +11,6 @@
             overflow: hidden;
         }
 
-        /* Główny kontener paska */
         .banner-container {
             width: 100vw;
             height: 300px; 
@@ -20,9 +19,9 @@
             position: relative;
             display: flex;
             align-items: center;
+            justify-content: center;
         }
 
-        /* Ścieżka przesuwająca cały pasek w 120 sekund */
         .banner-track {
             display: flex;
             width: max-content;
@@ -30,28 +29,26 @@
             animation: scrollBanner 120s linear infinite;
         }
 
-        /* Pojedynczy kontener giftu (odpowiada za obrót 3D) */
         .gift-item {
             height: 300px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 30px; /* Odstęp między gifty */
+            margin: 0 40px;
             perspective: 1000px;
         }
 
-        /* Obrazek giftu, który się obraca i ma usunięte czarne tło */
         .gift-img {
             height: 250px;
             width: auto;
             display: block;
-            mix-blend-mode: screen; /* Usuwa czarne tło */
+            mix-blend-mode: screen;
             image-rendering: -webkit-optimize-contrast;
             image-rendering: crisp-edges;
-            animation: rotateGift 4s ease-in-out infinite; /* Czas obrotu jednego giftu (np. 4 sekundy) */
+            transform-style: preserve-3d;
+            animation: rotateGift 4s linear infinite;
         }
 
-        /* Płynna animacja obrotu giftu wokół własnej osi */
         @keyframes rotateGift {
             0% {
                 transform: rotateY(0deg);
@@ -61,7 +58,6 @@
             }
         }
 
-        /* Animacja przesuwania całego paska (120s) - duplikaty zapewniają płynną pętlę */
         @keyframes scrollBanner {
             0% {
                 transform: translateX(0);
@@ -76,7 +72,7 @@
 
     <div class="banner-container">
         <div class="banner-track">
-            <!-- PIERWSZY ZESTAW GIFTÓW (1 do 35) -->
+            <!-- ZESTAW 1 (1 do 35) -->
             <div class="gift-item"><img src="1.png" class="gift-img" alt="Gift 1"></div>
             <div class="gift-item"><img src="2.png" class="gift-img" alt="Gift 2"></div>
             <div class="gift-item"><img src="3.png" class="gift-img" alt="Gift 3"></div>
@@ -113,7 +109,7 @@
             <div class="gift-item"><img src="34.png" class="gift-img" alt="Gift 34"></div>
             <div class="gift-item"><img src="35.png" class="gift-img" alt="Gift 35"></div>
 
-            <!-- DRUGI ZESTAW (KOPIA DO IDEALNEJ PĘTLI) -->
+            <!-- ZESTAW 2 (KOPIA DO PŁYNNEJ PĘTLI) -->
             <div class="gift-item"><img src="1.png" class="gift-img" alt="Gift 1"></div>
             <div class="gift-item"><img src="2.png" class="gift-img" alt="Gift 2"></div>
             <div class="gift-item"><img src="3.png" class="gift-img" alt="Gift 3"></div>
