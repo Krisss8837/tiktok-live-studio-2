@@ -2,66 +2,133 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>Stream Gift Rotator</title>
+    <title>Stream Gift Book Flip</title>
     <style>
         body {
             margin: 0;
             padding: 0;
             background: transparent;
             overflow: hidden;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .banner-container {
-            width: 100vw;
-            height: 300px; 
+        .book-container {
+            width: 300px; /* Szerokość strony */
+            height: 400px; /* Wysokość strony */
+            position: relative;
             background: transparent;
+            /* Perspektywa dla efektu 3D */
+            perspective: 1500px; 
+        }
+
+        /* Wspólny styl dla obu stron */
+        .page {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            perspective: 1000px;
+            backface-visibility: hidden; /* Ukrywa tył strony podczas obrotu */
+            border-radius: 10px;
+            overflow: hidden;
         }
 
-        .gift-img {
-            height: 250px;
-            width: auto;
-            display: block;
-            mix-blend-mode: screen;
-            image-rendering: -webkit-optimize-contrast;
+        /* Obrazki na stronach */
+        .page img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            mix-blend-mode: screen; /* Usuwa czarne tło */
             image-rendering: crisp-edges;
-            transform-style: preserve-3d;
-            /* Czas jednego obrotu (zmiana na kolejny gift następuje co 4 sekundy) */
-            animation: rotateGift 4s linear infinite;
         }
 
-        @keyframes rotateGift {
+        /* Strona "pod spodem" (nowa) */
+        #backPage {
+            background-color: transparent; 
+            z-index: 1;
+        }
+
+        /* Strona "na wierzchu" (ta, która się przewraca) */
+        #frontPage {
+            background-color: transparent; 
+            z-index: 2;
+            /* Punkt transformacji - prawa krawędź, wokół której obraca się strona */
+            transform-origin: right center; 
+        }
+
+        /* Klasa aktywująca animację przewracania */
+        .flip-animation {
+            animation: flipPage 1.5s forwards; /* Czas trwania przewracania (1.5s) */
+        }
+
+        /* Klatki kluczowe animacji przewracania */
+        @keyframes flipPage {
             0% {
                 transform: rotateY(0deg);
             }
+            50% {
+                /* Efekt cienia podczas przewracania */
+                box-shadow: -20px 10px 30px rgba(0,0,0,0.5);
+            }
             100% {
-                transform: rotateY(360deg);
+                transform: rotateY(-180deg);
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="banner-container">
-        <img id="giftImage" src="1.png" class="gift-img" alt="Gift">
+    <div class="book-container">
+        <!-- Strona spodnia (ta, która będzie widoczna PO przewróceniu) -->
+        <div class="page" id="backPage">
+            <img id="imgBack" src="2.png" alt="Gift Next">
+        </div>
+        <!-- Strona wierzchnia (ta, która się przewraca) -->
+        <div class="page" id="frontPage">
+            <img id="imgFront" src="1.png" alt="Gift Current">
+        </div>
     </div>
 
     <script>
-        let currentGift = 1;
-        const totalGifts = 35;
-        const imgElement = document.getElementById('giftImage');
+        let currentGiftIndex = 1;
+        const totalGifts = 35; // Zmień na 35
+        const frontPage = document.getElementById('frontPage');
+        const imgFront = document.getElementById('imgFront');
+        const imgBack = document.getElementById('imgBack');
 
-        // Co 4 sekundy (tyle trwa jeden obrót) zmienia obrazek na kolejny
-        setInterval(() => {
-            currentGift++;
-            if (currentGift > totalGifts) {
-                currentGift = 1;
-            }
-            imgElement.src = currentGift + '.png';
-        }, 4000);
+        function changePage() {
+            // Dodaj klasę animacji, aby rozpocząć przewracanie
+            frontPage.classList.add('flip-animation');
+
+            // Po zakończeniu animacji (czas trwania zgodny z CSS - 1.5s)
+            setTimeout(() => {
+                // 1. Oblicz numery następnych giftów
+                currentGiftIndex++;
+                if (currentGiftIndex > totalGifts) currentGiftIndex = 1;
+                
+                let nextGiftIndex = currentGiftIndex + 1;
+                if (nextGiftIndex > totalGifts) nextGiftIndex = 1;
+
+                // 2. Podmień źródła obrazków "pod spodem"
+                imgFront.src = currentGiftIndex + '.png';
+                imgBack.src = nextGiftIndex + '.png';
+
+                // 3. Zresetuj stan strony wierzchniej (bez animacji)
+                frontPage.classList.remove('flip-animation');
+                void frontPage.offsetWidth; // Trick: wymuszenie reflow, aby przeglądarka 'zapomniała' animację
+
+            }, 1500); // Ten czas musi być równy czasowi animacji w CSS (1.5s = 1500ms)
+        }
+
+        // Rozpocznij pętlę zmian
+        // Zmieniamy stronę co 5 sekund (1.5s na animację + 3.5s przerwy)
+        setInterval(changePage, 5000);
     </script>
 
 </body>
